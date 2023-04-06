@@ -4,6 +4,9 @@ import {Suspense} from 'react';
 const RemoteNxApp = dynamic(() => import('remoteNx/remoteNx'), {
   suspense: true,
 });
+const RemoteRCTApp = dynamic(() => import('RemoteRCT/App'), {
+  suspense: true,
+});
 
 export default function Home() {
   return (
@@ -33,6 +36,11 @@ export default function Home() {
         <div>
           <Suspense>
             <RemoteNxApp />
+          </Suspense>
+        </div>
+        <div>
+          <Suspense>
+            <RemoteRCTApp />
           </Suspense>
         </div>
       </main>

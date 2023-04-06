@@ -17,6 +17,8 @@ const nextConfig = {
         name: 'remoteNx',
         remotes: {
           remoteNx: `remoteNx@https://mellifluous-entremet-234503.netlify.app/_next/static/${location}/remoteEntry.js`,
+          RemoteRCT:
+            'RemoteRCT@https://whimsical-taiyaki-0a9494.netlify.app/remoteEntry.js',
         },
         filename: 'static/chunks/remoteEntry.js',
       })
