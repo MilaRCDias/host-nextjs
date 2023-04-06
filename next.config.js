@@ -9,6 +9,8 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  compiler: {styledComponents: true},
+  transpilePackages: ['@medlify/platform.shell'],
   webpack: (config, options) => {
     const location = options.isServer ? 'ssr' : 'chunks';
 
@@ -16,11 +18,18 @@ const nextConfig = {
       new NextFederationPlugin({
         name: 'remoteNx',
         remotes: {
-          remoteNx: `remoteNx@https://mellifluous-entremet-234503.netlify.app/_next/static/${location}/remoteEntry.js`,
-          RemoteRCT:
-            'RemoteRCT@https://whimsical-taiyaki-0a9494.netlify.app/remoteEntry.js',
+          //remoteNx: `remoteNx@https://mellifluous-entremet-234503.netlify.app/_next/static/${location}/remoteEntry.js`,
+          remoteNx: `remoteNx@http://localhost:5005/_next/static/${location}/remoteEntry.js`,
+          /*     RemoteRCT:
+            'RemoteRCT@https://whimsical-taiyaki-0a9494.netlify.app/remoteEntry.js', */
         },
         filename: 'static/chunks/remoteEntry.js',
+        shared: {
+          'styled-components': {singleton: true}, '@medlify/platform.shell':{singleton:true}
+        },
+        extraOptions: {
+          automaticAsyncBoundary: true,
+        },
       })
     );
 
